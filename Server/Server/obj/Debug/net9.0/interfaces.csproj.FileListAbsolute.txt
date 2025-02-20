@@ -1,0 +1,18 @@
+F:\Projects\.NET\learning\interfaces\interfaces\bin\Debug\net9.0\interfaces.exe
+F:\Projects\.NET\learning\interfaces\interfaces\bin\Debug\net9.0\interfaces.deps.json
+F:\Projects\.NET\learning\interfaces\interfaces\bin\Debug\net9.0\interfaces.runtimeconfig.json
+F:\Projects\.NET\learning\interfaces\interfaces\bin\Debug\net9.0\interfaces.dll
+F:\Projects\.NET\learning\interfaces\interfaces\bin\Debug\net9.0\interfaces.pdb
+F:\Projects\.NET\learning\interfaces\interfaces\obj\Debug\net9.0\interfaces.GeneratedMSBuildEditorConfig.editorconfig
+F:\Projects\.NET\learning\interfaces\interfaces\obj\Debug\net9.0\interfaces.AssemblyInfoInputs.cache
+F:\Projects\.NET\learning\interfaces\interfaces\obj\Debug\net9.0\interfaces.AssemblyInfo.cs
+F:\Projects\.NET\learning\interfaces\interfaces\obj\Debug\net9.0\interfaces.csproj.CoreCompileInputs.cache
+F:\Projects\.NET\learning\interfaces\interfaces\obj\Debug\net9.0\interfaces.dll
+F:\Projects\.NET\learning\interfaces\interfaces\obj\Debug\net9.0\refint\interfaces.dll
+F:\Projects\.NET\learning\interfaces\interfaces\obj\Debug\net9.0\interfaces.pdb
+F:\Projects\.NET\learning\interfaces\interfaces\obj\Debug\net9.0\interfaces.genruntimeconfig.cache
+F:\Projects\.NET\learning\interfaces\interfaces\obj\Debug\net9.0\ref\interfaces.dll
+F:\Projects\.NET\learning\interfaces\interfaces\bin\Debug\net9.0\Api Messages.dll
+F:\Projects\.NET\learning\interfaces\interfaces\bin\Debug\net9.0\Api Messages.pdb
+F:\Projects\.NET\learning\interfaces\interfaces\obj\Debug\net9.0\interfaces.csproj.AssemblyReference.cache
+F:\Projects\.NET\learning\interfaces\interfaces\obj\Debug\net9.0\interfaces.csproj.Up2Date

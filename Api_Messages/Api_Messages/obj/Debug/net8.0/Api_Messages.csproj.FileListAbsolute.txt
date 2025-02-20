@@ -1,0 +1,14 @@
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\bin\Debug\net8.0\Api_Messages.exe
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\bin\Debug\net8.0\Api_Messages.deps.json
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\bin\Debug\net8.0\Api_Messages.runtimeconfig.json
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\bin\Debug\net8.0\Api_Messages.dll
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\bin\Debug\net8.0\Api_Messages.pdb
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\obj\Debug\net8.0\Api_Messages.GeneratedMSBuildEditorConfig.editorconfig
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\obj\Debug\net8.0\Api_Messages.AssemblyInfoInputs.cache
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\obj\Debug\net8.0\Api_Messages.AssemblyInfo.cs
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\obj\Debug\net8.0\Api_Messages.csproj.CoreCompileInputs.cache
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\obj\Debug\net8.0\Api_Messages.dll
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\obj\Debug\net8.0\refint\Api_Messages.dll
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\obj\Debug\net8.0\Api_Messages.pdb
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\obj\Debug\net8.0\Api_Messages.genruntimeconfig.cache
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\obj\Debug\net8.0\ref\Api_Messages.dll

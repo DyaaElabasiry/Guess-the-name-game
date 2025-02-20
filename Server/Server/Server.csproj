@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>interfaces</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Api Messages">
+        <HintPath>..\..\..\guess the name\Api Messages\Api Messages\bin\Debug\net9.0\Api Messages.dll</HintPath>
+      </Reference>
+      <Reference Include="Api_Messages">
+        <HintPath>..\..\..\guess the name\Api_Messages\Api_Messages\bin\Debug\net8.0\Api_Messages.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

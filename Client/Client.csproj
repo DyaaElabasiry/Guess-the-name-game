@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Api Messages">
+      <HintPath>..\Api Messages\Api Messages\bin\Debug\net9.0\Api Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="Api_Messages">
+      <HintPath>..\Api_Messages\Api_Messages\bin\Debug\net8.0\Api_Messages.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
