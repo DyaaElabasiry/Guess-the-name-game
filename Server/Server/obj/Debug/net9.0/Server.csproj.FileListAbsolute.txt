@@ -34,3 +34,4 @@ F:\Projects\.NET\guess the name\Server\Server\obj\Debug\net9.0\refint\Server.dll
 F:\Projects\.NET\guess the name\Server\Server\obj\Debug\net9.0\Server.pdb
 F:\Projects\.NET\guess the name\Server\Server\obj\Debug\net9.0\Server.genruntimeconfig.cache
 F:\Projects\.NET\guess the name\Server\Server\obj\Debug\net9.0\ref\Server.dll
+F:\Projects\.NET\guess the name\Server\Server\obj\Debug\net9.0\Server.sourcelink.json

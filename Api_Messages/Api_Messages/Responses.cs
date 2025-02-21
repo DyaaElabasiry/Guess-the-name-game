@@ -8,13 +8,14 @@ public enum ResponseType
 
 public class Response
 {
-    public ResponseType responseType { get; set; }
+    public ResponseType Type { get; set; }
     public object payload  { get; set; }
 }
-public class listResponsePayload
+/*public class listResponsePayload
 {
-    public List<int> roomIds { get; set; }
-}
+    public List<string> roomIds { get; set; }
+    public List<GameCategory> categories { get; set; }
+}*/
 public class getUserNameResponsePayload
 {
     public string username { get; set; }
@@ -22,6 +23,6 @@ public class getUserNameResponsePayload
 }
 public class getRoomsResponsePayload
 {
-    public List<int> roomIds { get; set; }
-    
+    public List<string> roomIds { get; set; }
+    public List<GameCategory> categories { get; set; }
 }

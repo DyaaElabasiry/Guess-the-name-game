@@ -7,19 +7,12 @@ using System.Threading.Tasks;
 using Api_Messages;
 
 
-public class Player
-{
-    public string username { get; set; }
-    public TcpClient client { get; set; }
-    public int roomId { get; set; }
-    
-}
 
 
 class Server
 {
     static TcpListener listener;
-    static Dictionary<int, List<Player>> rooms = new Dictionary<int, List<Player>>();
+    static Dictionary<string, Room> rooms = new Dictionary<string, Room>();
 
     public static async Task Start()
     {
@@ -54,46 +47,55 @@ class Server
                 var request = JsonSerializer.Deserialize<Request>(message);
                 
                 
-                if (request.requestType == RequestType.login)
+                if (request.Type == RequestType.login)
                 {
+                    Console.WriteLine("Login request");
                     loginRequestPayload payload = JsonSerializer.Deserialize<loginRequestPayload>(request.payload.ToString());
                     player.username = payload.username;
-                    Console.WriteLine("Login request");
                     
                     
                 }
-                else if (request.requestType == RequestType.create)
+                else if (request.Type == RequestType.create)
                 {
-                    createRequestPayload payload = JsonSerializer.Deserialize<createRequestPayload>(request.payload.ToString());
                     Console.WriteLine("Create request");
+                    createRoomRequestPayload payload = JsonSerializer.Deserialize<createRoomRequestPayload>(request.payload.ToString());
                     player.roomId = payload.roomId;
-                    rooms[player.roomId] = new List<Player>();
-                    rooms[player.roomId].Add(player);
+                    rooms[player.roomId] = new Room();
+                    rooms[player.roomId].roomId = player.roomId;
+                    //rooms[player.roomId].players.Add(player);
                 }
-                else if (request.requestType == RequestType.join)
+                else if (request.Type == RequestType.join)
                 {
+                    Console.WriteLine("join request");
                     joinRequestPayload payload = JsonSerializer.Deserialize<joinRequestPayload>(request.payload.ToString());
                     player.roomId = payload.roomId;
-                    rooms[player.roomId].Add(player);
+                    rooms[player.roomId].players.Add(player);
                 }
-                else if (request.requestType == RequestType.getRooms)
+                else if (request.Type == RequestType.getRooms)
                 {
                     Console.WriteLine("get rooms request");
-                    List<int> roomIds = rooms.Keys.ToList();
-                    listResponsePayload payload = new listResponsePayload{roomIds = roomIds};
+                    List<string> roomIds = new List<string>();
+                    List<GameCategory> categories = new List<GameCategory>();
+                    foreach (var room in rooms)
+                    {
+                        roomIds.Add(room.Value.roomId);
+                        categories.Add(room.Value.category);
+                    }
+                    getRoomsResponsePayload payload = new getRoomsResponsePayload{roomIds = roomIds, categories = categories};
                     Response response = new Response
                     {
-                        responseType = ResponseType.getRooms,
+                        Type = ResponseType.getRooms,
                         payload = JsonSerializer.SerializeToElement(payload)
                     };
                     await SendResponse(player, response);
                 }
-                else if(request.requestType == RequestType.getUserName)
+                else if(request.Type == RequestType.getUserName)
                 {
+                    Console.WriteLine("get userName request");
                     getUserNameResponsePayload payload = new getUserNameResponsePayload{username = player.username};
                     Response response = new Response
                     {
-                        responseType = ResponseType.getUserName,
+                        Type = ResponseType.getUserName,
                         payload = JsonSerializer.SerializeToElement(payload)
                     };
                     await SendResponse(player, response);
@@ -101,6 +103,14 @@ class Server
                 
                 
             }
+            Console.WriteLine("Client disconnected.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            Console.WriteLine(ex.Source);
+            Console.WriteLine(ex.StackTrace);
+            
         }
         finally
         {
@@ -116,6 +126,13 @@ class Server
         string message = JsonSerializer.Serialize(response);
         byte[] data = Encoding.UTF8.GetBytes(message);
         await player.client.GetStream().WriteAsync(data, 0, data.Length);
+    }
+    static async Task<Response> GetResponse(Player player)
+    {
+        byte[] buffer = new byte[1024];
+        int bytesRead = await player.client.GetStream().ReadAsync(buffer, 0, buffer.Length);
+        string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+        return JsonSerializer.Deserialize<Response>(message);
     }
     
     

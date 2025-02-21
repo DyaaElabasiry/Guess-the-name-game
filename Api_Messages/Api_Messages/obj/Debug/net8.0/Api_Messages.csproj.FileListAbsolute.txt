@@ -12,3 +12,4 @@ F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\obj\Debug\net8.0\refin
 F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\obj\Debug\net8.0\Api_Messages.pdb
 F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\obj\Debug\net8.0\Api_Messages.genruntimeconfig.cache
 F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\obj\Debug\net8.0\ref\Api_Messages.dll
+F:\Projects\.NET\guess the name\Api_Messages\Api_Messages\obj\Debug\net8.0\Api_Messages.sourcelink.json

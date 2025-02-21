@@ -13,21 +13,23 @@ namespace Client
         {
             InitializeComponent();
             client = new TcpClient("127.0.0.1", 5000);
+            ClientPlayer.client = client;
+            
         }
 
         private void button_login_Click(object sender, EventArgs e)
         {
             string name = textBox_enter_name.Text;
-            Api_Messages.loginRequestPayload loginRequest = new Api_Messages.loginRequestPayload() { username = name }; // Fully qualify the type
-            Request request = new Request() { requestType = RequestType.login, payload = loginRequest };
-            SendRequest(client.GetStream(), request);
+            ClientPlayer.name = name;
+            loginRequestPayload loginRequest = new loginRequestPayload() { username = name }; 
+            Request request = new Request() { Type = RequestType.login, payload = loginRequest };
+            ClientPlayer.SendRequest( request);
+            RoomsForm roomsForm = new RoomsForm();
+            roomsForm.Show();
+            this.Hide();
+
         }
 
-        private async Task SendRequest(NetworkStream stream, Request request)
-        {
-            string message = JsonSerializer.Serialize(request);
-            byte[] data = Encoding.UTF8.GetBytes(message);
-            await stream.WriteAsync(data, 0, data.Length);
-        }
+       
     }
 }

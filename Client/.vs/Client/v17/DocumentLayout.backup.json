@@ -3,20 +3,32 @@
   "WorkspaceRootPath": "F:\\Projects\\.NET\\guess the name\\Client\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|f:\\projects\\.net\\guess the name\\client\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|solutionrelative:loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|f:\\projects\\.net\\guess the name\\client\\gameform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|solutionrelative:gameform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|F:\\Projects\\.NET\\guess the name\\Client\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|solutionrelative:loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|f:\\projects\\.net\\guess the name\\client\\keyboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|solutionrelative:keyboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|f:\\projects\\.net\\guess the name\\client\\keyboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|solutionrelative:keyboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|f:\\projects\\.net\\guess the name\\client\\keyboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|solutionrelative:keyboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|f:\\projects\\.net\\guess the name\\client\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|f:\\projects\\.net\\guess the name\\client\\loginform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|solutionrelative:loginform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|f:\\projects\\.net\\guess the name\\client\\gameform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|solutionrelative:gameform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|f:\\projects\\.net\\guess the name\\client\\gameform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{5C1615A2-D09C-44BD-A32F-26C847381D22}|Client.csproj|solutionrelative:gameform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,56 +38,96 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "F:\\Projects\\.NET\\guess the name\\Client\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "F:\\Projects\\.NET\\guess the name\\Client\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T08:51:55.132Z"
+              "WhenOpened": "2025-02-21T12:01:24.048Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "LoginForm.cs [Design]",
-              "DocumentMoniker": "F:\\Projects\\.NET\\guess the name\\Client\\LoginForm.cs",
-              "RelativeDocumentMoniker": "LoginForm.cs",
-              "ToolTip": "F:\\Projects\\.NET\\guess the name\\Client\\LoginForm.cs [Design]",
-              "RelativeToolTip": "LoginForm.cs [Design]",
+              "DocumentIndex": 5,
+              "Title": "GameForm.Designer.cs",
+              "DocumentMoniker": "F:\\Projects\\.NET\\guess the name\\Client\\GameForm.Designer.cs",
+              "RelativeDocumentMoniker": "GameForm.Designer.cs",
+              "ToolTip": "F:\\Projects\\.NET\\guess the name\\Client\\GameForm.Designer.cs",
+              "RelativeToolTip": "GameForm.Designer.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwCUAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T08:13:16.548Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "LoginForm.cs",
-              "DocumentMoniker": "F:\\Projects\\.NET\\guess the name\\Client\\LoginForm.cs",
-              "RelativeDocumentMoniker": "LoginForm.cs",
-              "ToolTip": "F:\\Projects\\.NET\\guess the name\\Client\\LoginForm.cs",
-              "RelativeToolTip": "LoginForm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T07:51:55.645Z",
+              "WhenOpened": "2025-02-21T12:00:36.424Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "LoginForm.Designer.cs",
-              "DocumentMoniker": "F:\\Projects\\.NET\\guess the name\\Client\\LoginForm.Designer.cs",
-              "RelativeDocumentMoniker": "LoginForm.Designer.cs",
-              "ToolTip": "F:\\Projects\\.NET\\guess the name\\Client\\LoginForm.Designer.cs",
-              "RelativeToolTip": "LoginForm.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
+              "Title": "Keyboard.Designer.cs",
+              "DocumentMoniker": "F:\\Projects\\.NET\\guess the name\\Client\\Keyboard.Designer.cs",
+              "RelativeDocumentMoniker": "Keyboard.Designer.cs",
+              "ToolTip": "F:\\Projects\\.NET\\guess the name\\Client\\Keyboard.Designer.cs",
+              "RelativeToolTip": "Keyboard.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T07:51:49.065Z"
+              "WhenOpened": "2025-02-21T11:58:42.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Keyboard.cs",
+              "DocumentMoniker": "F:\\Projects\\.NET\\guess the name\\Client\\Keyboard.cs",
+              "RelativeDocumentMoniker": "Keyboard.cs",
+              "ToolTip": "F:\\Projects\\.NET\\guess the name\\Client\\Keyboard.cs",
+              "RelativeToolTip": "Keyboard.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwDcAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-21T11:58:17.158Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Keyboard.cs [Design]",
+              "DocumentMoniker": "F:\\Projects\\.NET\\guess the name\\Client\\Keyboard.cs",
+              "RelativeDocumentMoniker": "Keyboard.cs",
+              "ToolTip": "F:\\Projects\\.NET\\guess the name\\Client\\Keyboard.cs [Design]",
+              "RelativeToolTip": "Keyboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-21T11:58:11.484Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameForm.cs",
+              "DocumentMoniker": "F:\\Projects\\.NET\\guess the name\\Client\\GameForm.cs",
+              "RelativeDocumentMoniker": "GameForm.cs",
+              "ToolTip": "F:\\Projects\\.NET\\guess the name\\Client\\GameForm.cs*",
+              "RelativeToolTip": "GameForm.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBMAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-21T11:53:18.564Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GameForm.cs [Design]",
+              "DocumentMoniker": "F:\\Projects\\.NET\\guess the name\\Client\\GameForm.cs",
+              "RelativeDocumentMoniker": "GameForm.cs",
+              "ToolTip": "F:\\Projects\\.NET\\guess the name\\Client\\GameForm.cs [Design]*",
+              "RelativeToolTip": "GameForm.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-21T11:52:54.841Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

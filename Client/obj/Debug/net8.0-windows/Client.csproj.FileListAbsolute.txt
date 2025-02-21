@@ -18,3 +18,9 @@ F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.LoginForm
 F:\Projects\.NET\guess the name\Client\bin\Debug\net8.0-windows\Api_Messages.dll
 F:\Projects\.NET\guess the name\Client\bin\Debug\net8.0-windows\Api_Messages.pdb
 F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.csproj.Up2Date
+F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.CreateRoomDialog.resources
+F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.RoomComponent.resources
+F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.sourcelink.json
+F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.RoomsForm.resources
+F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.GameForm.resources
+F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.OnScreenKeyboard.resources
