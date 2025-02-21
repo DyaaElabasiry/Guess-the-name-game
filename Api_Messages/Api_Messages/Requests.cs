@@ -9,7 +9,9 @@ public enum RequestType
     create,
     getRooms,
     join,
-    move
+    move,
+    pressedKey,
+    gameOver
 }
 
 
@@ -41,4 +43,9 @@ public class joinRequestPayload
 {
     public string roomId { get; set; }
     
+}
+
+public class pressedKeyRequestPayload
+{
+    public char key { get; set; }
 }

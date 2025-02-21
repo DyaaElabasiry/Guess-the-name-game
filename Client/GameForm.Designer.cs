@@ -32,7 +32,7 @@
             // 
             // GameForm
             // 
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.Name = "GameForm";
             this.Text = "GameForm";
             this.ResumeLayout(false);

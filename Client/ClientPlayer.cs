@@ -14,6 +14,7 @@ namespace Client
         public static TcpClient client;
         public static string name;
         public static string roomId;
+        public static string word = "CAT";
         public static  async Task SendRequest(Request request)
         {
             string message = JsonSerializer.Serialize(request);

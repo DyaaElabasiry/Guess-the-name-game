@@ -15,15 +15,15 @@
 
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            SuspendLayout();
             // 
             // OnScreenKeyboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "OnScreenKeyboard";
-            this.Size = new System.Drawing.Size(800, 300);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Name = "OnScreenKeyboard";
+            Size = new Size(800, 142);
+            ResumeLayout(false);
         }
     }
 }

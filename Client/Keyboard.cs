@@ -51,9 +51,9 @@ namespace Client
             {
                 string key = button.Text;
                 Keys keyCode = (Keys)Enum.Parse(typeof(Keys), key, true); 
-                KeyPressed?.Invoke(this, new KeyEventArgs(keyCode));
+                KeyPressed?.Invoke(button, new KeyEventArgs(keyCode));
             }
-            button.Enabled = false;
+            //button.Enabled = false;
         }
     }
 }

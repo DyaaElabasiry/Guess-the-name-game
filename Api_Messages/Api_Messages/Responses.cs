@@ -3,7 +3,7 @@
 
 public enum ResponseType
 {
-    list,login,getUserName,getRooms
+    list,login,getUserName,getRooms,roomInfo,yourTurn,gameOver
 }
 
 public class Response
@@ -26,3 +26,15 @@ public class getRoomsResponsePayload
     public List<string> roomIds { get; set; }
     public List<GameCategory> categories { get; set; }
 }
+/// <summary>
+/// //////
+/// </summary>
+public class roomInfoResponsePayload
+{
+    
+    public string word { get; set; }
+    public string otherPlayerName { get; set; }
+    
+}
+
+
