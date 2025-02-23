@@ -24,3 +24,4 @@ F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.sourcelin
 F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.RoomsForm.resources
 F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.GameForm.resources
 F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.OnScreenKeyboard.resources
+F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.MainForm.resources

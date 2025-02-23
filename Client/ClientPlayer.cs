@@ -12,9 +12,9 @@ namespace Client
     class ClientPlayer
     {
         public static TcpClient client;
-        public static string name;
-        public static string roomId;
-        public static string word = "CAT";
+        public static string PlayerName;
+        public static RoomInfo roomInfo = new RoomInfo() { word = "CAT"};
+        
         public static  async Task SendRequest(Request request)
         {
             string message = JsonSerializer.Serialize(request);

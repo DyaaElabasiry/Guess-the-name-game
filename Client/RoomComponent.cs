@@ -9,30 +9,49 @@ using Api_Messages;
 
 namespace Client
 {
-    public partial class RoomComponent: UserControl
+    public partial class RoomComponent : UserControl
     {
-        public string RoomName { get; set; }
-        public string Category;
-        public RoomComponent(string roomName, string category)
+        
+        public RoomInfo roomInfo;
+        private RoomsForm roomsForm;
+        public RoomComponent(RoomInfo room,RoomsForm roomsForm)
         {
             InitializeComponent();
-            RoomName = roomName;
-            Category = category;
-            labelRoomName.Text = roomName;
-            label_RoomCategory.Text = category;
+            this.roomsForm = roomsForm;
+            roomInfo = room;
+            if(roomInfo.numberOfPlayers == 2)
+            {
+                buttonJoin.Enabled = false;
+                buttonSpectate.Enabled = true;
+            }
+
+            
+            labelRoomName.Text = roomInfo.roomId;
+            label_RoomCategory.Text = roomInfo.category.ToString();
+            label_NumberOfPlayers.Text = $"players : {roomInfo.numberOfPlayers.ToString()}";
 
         }
 
         private void buttonSpectate_Click(object sender, EventArgs e)
         {
-            
+            spectateRequestPayload payload = new spectateRequestPayload() { roomId = roomInfo.roomId };
+            Request request = new Request() { Type = RequestType.spectate,payload=payload};
+            ClientPlayer.SendRequest(request);
+            roomsForm.SpectateRoom(roomInfo);
         }
 
         private void buttonJoin_Click(object sender, EventArgs e)
         {
-            joinRequestPayload payload = new joinRequestPayload() { roomId = RoomName };
+            // sending join request to server
+            joinRequestPayload payload = new joinRequestPayload() { roomId = roomInfo.roomId };
             Request request = new Request() { Type = RequestType.join, payload = payload };
             ClientPlayer.SendRequest(request);
+
+            // opening game form
+
+            roomsForm.JoinRoom(roomInfo);
+
+
         }
     }
 }

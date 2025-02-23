@@ -1,35 +1,27 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Net.Sockets;
-using System.Text.Json;
-using System.Text;
+using System;
+using System.Windows.Forms;
 using Api_Messages;
 
 namespace Client
 {
-    public partial class LoginForm : Form
+    public partial class LoginForm : UserControl
     {
-        TcpClient client;
-        public LoginForm()
+        private MainForm mainForm;
+        public LoginForm(MainForm mainForm)
         {
             InitializeComponent();
-            client = new TcpClient("127.0.0.1", 5000);
-            ClientPlayer.client = client;
-            
+            this.mainForm = mainForm;
         }
 
         private void button_login_Click(object sender, EventArgs e)
         {
             string name = textBox_enter_name.Text;
-            ClientPlayer.name = name;
-            loginRequestPayload loginRequest = new loginRequestPayload() { username = name }; 
+            ClientPlayer.PlayerName = name;
+            loginRequestPayload loginRequest = new loginRequestPayload() { username = name };
             Request request = new Request() { Type = RequestType.login, payload = loginRequest };
-            ClientPlayer.SendRequest( request);
-            RoomsForm roomsForm = new RoomsForm();
-            roomsForm.Show();
-            this.Hide();
+            ClientPlayer.SendRequest(request);
 
+            mainForm.ShowRoomsPanel();
         }
-
-       
     }
 }

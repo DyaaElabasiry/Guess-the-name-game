@@ -4,11 +4,12 @@
 public enum RequestType
 {
     login,
+    spectate,
+    join,
     getUserName,
     list,
     create,
     getRooms,
-    join,
     move,
     pressedKey,
     gameOver
@@ -44,8 +45,13 @@ public class joinRequestPayload
     public string roomId { get; set; }
     
 }
-
+public class spectateRequestPayload
+{
+    public string roomId { get; set; }
+    
+}
 public class pressedKeyRequestPayload
 {
     public char key { get; set; }
+    public string guessedChars { get; set; }
 }

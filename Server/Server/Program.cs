@@ -31,7 +31,9 @@ class Server
         Player player = new Player() { client = client };
         NetworkStream stream = client.GetStream();
         byte[] buffer = new byte[1024];
-        player.roomId = "Room1";
+        
+        /// automatic join to test the last page of the game
+        /*player.roomId = "Room1";
         if (!rooms.ContainsKey(player.roomId))
         {
             rooms[player.roomId] = new Room();
@@ -47,21 +49,16 @@ class Server
         else
         {
             rooms[player.roomId].player2 = player;
-        }
+        }*/
 
 
         try
         {
             while (true)
             {
-                int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
-                if (bytesRead == 0) break; // Client disconnected
-
-                string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                Console.WriteLine($"Received: {message}");
-
-
-                var request = JsonSerializer.Deserialize<Request>(message);
+                
+                
+                Request request = await GetRequest(player);
 
 
                 if (request.Type == RequestType.login)
@@ -80,7 +77,8 @@ class Server
                     rooms[player.roomId] = new Room();
                     rooms[player.roomId].roomId = player.roomId;
                     rooms[player.roomId].category = payload.category;
-                    rooms[player.roomId].word = "CAT";
+                    rooms[player.roomId].word = GetRandomWord(payload.category);
+                    rooms[player.roomId].guessedChars = new string('_', rooms[player.roomId].word.Length);
                     //rooms[player.roomId].players.Add(player);
                 }
                 else if (request.Type == RequestType.join)
@@ -88,36 +86,54 @@ class Server
                     Console.WriteLine("join request");
                     joinRequestPayload payload =
                         JsonSerializer.Deserialize<joinRequestPayload>(request.payload.ToString());
-                    player.roomId = payload.roomId;
-
-
-                    roomInfoResponsePayload payload2 = new roomInfoResponsePayload { word = rooms[player.roomId].word };
-                    Response response = new Response
+                    string roomId = payload.roomId;
+                    player.roomId = roomId;
+                    if(rooms[roomId].player1 == null)
                     {
-                        Type = ResponseType.roomInfo,
-                        payload = JsonSerializer.SerializeToElement(payload2)
-                    };
-                    await SendResponse(player, response);
+                        rooms[roomId].player1 = player;
+                    }
+                    else
+                    {
+                        rooms[roomId].player2 = player;
+                    }
+
+                    
                 }
                 else if (request.Type == RequestType.getRooms)
                 {
                     Console.WriteLine("get rooms request");
-                    List<string> roomIds = new List<string>();
-                    List<GameCategory> categories = new List<GameCategory>();
+                    List<RoomInfo> roomsInfo = new List<RoomInfo>();
                     foreach (var room in rooms)
                     {
-                        roomIds.Add(room.Value.roomId);
-                        categories.Add(room.Value.category);
+                        int count = 0;
+                        if (room.Value.player1 != null)
+                        {
+                            count++;
+                        }
+                        if (room.Value.player2 != null)
+                        {
+                            count++;
+                        }
+                        RoomInfo roomInfo = new RoomInfo
+                        {
+                            roomId = room.Value.roomId,
+                            category = room.Value.category,
+                            word = room.Value.word,
+                            numberOfPlayers = count
+                        };
+                        roomsInfo.Add(roomInfo);
+                        
+                        
                     }
 
                     getRoomsResponsePayload payload = new getRoomsResponsePayload
-                        { roomIds = roomIds, categories = categories };
+                        { rooms = roomsInfo};
                     Response response = new Response
                     {
                         Type = ResponseType.getRooms,
                         payload = JsonSerializer.SerializeToElement(payload)
                     };
-                    await SendResponse(player, response);
+                    SendResponse(player, response);
                 }
                 else if (request.Type == RequestType.getUserName)
                 {
@@ -128,52 +144,76 @@ class Server
                         Type = ResponseType.getUserName,
                         payload = JsonSerializer.SerializeToElement(payload)
                     };
-                    await SendResponse(player, response);
+                    SendResponse(player, response);
                 }
                 else if (request.Type == RequestType.gameOver)
                 {
                     Console.WriteLine("gameOver request");
-                    Player? otherPlayer = null;
-                    if (rooms[player.roomId].player1 == player)
-                    {
-                        otherPlayer = rooms[player.roomId].player2;
-                    }
-                    else
-                    {
-                        otherPlayer = rooms[player.roomId].player1;
-                    }
-
-
+                    Player otherPlayer = GetOtherPlayer(player);
+                    
                     Response response = new Response
                     {
                         Type = ResponseType.gameOver
                     };
-                    await SendResponse(otherPlayer, response);
+                    SendResponse(otherPlayer, response);
                 }
                 else if (request.Type == RequestType.pressedKey)
                 {
                     Console.WriteLine("pressedKey request");
                     pressedKeyRequestPayload payload =
                         JsonSerializer.Deserialize<pressedKeyRequestPayload>(request.payload.ToString());
-                    Player? otherPlayer = null;
-                    Console.WriteLine(
-                        $"{rooms[player.roomId].player1.roomId}     {rooms[player.roomId].player2.roomId}");
-                    ;
-                    if (rooms[player.roomId].player1 == player)
+                    Player otherPlayer = GetOtherPlayer(player);
+                    
+                    rooms[player.roomId].guessedChars = payload.guessedChars;
+                    
+                    //
+                    yourTurnResponsePayload yourTurnPayload = new yourTurnResponsePayload
                     {
-                        otherPlayer = rooms[player.roomId].player2;
-                    }
-                    else
-                    {
-                        otherPlayer = rooms[player.roomId].player1;
-                    }
-
-
+                        key = payload.key,
+                        guessedChars = payload.guessedChars
+                    };
                     Response response = new Response
                     {
-                        Type = ResponseType.yourTurn
+                        Type = ResponseType.yourTurn,
+                        payload = yourTurnPayload
+                        
                     };
-                    await SendResponse(otherPlayer, response);
+                    BroadCastToSpectators(player,response);
+                    SendResponse(otherPlayer, response);
+                }
+                else if(request.Type == RequestType.spectate)
+                {
+                    Console.WriteLine("spectate request");
+                    spectateRequestPayload requestPayload =
+                        JsonSerializer.Deserialize<spectateRequestPayload>(request.payload.ToString());
+                    string roomId = requestPayload.roomId;
+                    Room room = rooms[roomId];
+                    player.roomId = roomId;
+                    room.spectators.Add(player);
+                    spectateRoomResponsePayload responsePayload = new spectateRoomResponsePayload()
+                    {
+                        roomInfo = new RoomInfo()
+                        {
+                            category = room.category,
+                            guessedChars = room.guessedChars,
+                            player1Name = room.player1.username,
+                            player2Name = room.player2.username,
+                            roomId = room.roomId,
+                            roomName = room.roomId,
+                            word = room.word
+                        }
+                    };
+                    Response response = new Response
+                    {
+                        Type = ResponseType.spectateRoom,
+                        payload = responsePayload
+                    };
+                    SendResponse(player, response);
+                }
+                else
+
+                {
+                    
                 }
             }
 
@@ -197,18 +237,55 @@ class Server
 
     static async Task SendResponse(Player player, Response response)
     {
-        Console.WriteLine($"Sending response: {response.Type.ToString()}");
+        Console.WriteLine($"Sending response: {response.Type.ToString()} to {player.username}");
         string message = JsonSerializer.Serialize(response);
         byte[] data = Encoding.UTF8.GetBytes(message);
-        await player.client.GetStream().WriteAsync(data, 0, data.Length);
+        player.client.GetStream().WriteAsync(data, 0, data.Length);
     }
 
-    static async Task<Response> GetResponse(Player player)
+    static async Task<Request> GetRequest(Player player)
     {
         byte[] buffer = new byte[1024];
         int bytesRead = await player.client.GetStream().ReadAsync(buffer, 0, buffer.Length);
         string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-        return JsonSerializer.Deserialize<Response>(message);
+        return JsonSerializer.Deserialize<Request>(message);
+    }
+    static string GetRandomWord(GameCategory category)
+    {
+        string[] words = new string[3];
+        if (category == GameCategory.animal)
+        {
+            words = new string[] { "CAT", "DOG", "LION" };
+        }
+        else if (category == GameCategory.food)
+        {
+            words = new string[] { "PIZZA", "BURGER", "SANDWICH" };
+        }
+        else if (category == GameCategory.country)
+        {
+            words = new string[] { "TURKEY", "GERMANY", "FRANCE" };
+        }
+
+        Random random = new Random();
+        return words[random.Next(0, words.Length)];
+    }
+    static Player? GetOtherPlayer(Player player)
+    {
+        if (rooms[player.roomId].player1 == player)
+        {
+            return rooms[player.roomId].player2;
+        }
+        else
+        {
+            return rooms[player.roomId].player1;
+        }
+    }
+    static void BroadCastToSpectators(Player player, Response response)
+    {
+        foreach (var spectator in rooms[player.roomId].spectators)
+        {
+            SendResponse(spectator, response);
+        }
     }
 }
 

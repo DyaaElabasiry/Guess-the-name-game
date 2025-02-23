@@ -1,69 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Api_Messages;
 
 namespace Client
 {
-    public partial class RoomsForm : Form
+    public partial class RoomsForm : UserControl
     {
-        
-        List<string> roomIds = new List<string>();
-        List<GameCategory> categories = new List<GameCategory>();
-        
-        public RoomsForm()
+        public MainForm mainForm;
+
+        public RoomsForm(MainForm mainForm)
         {
             InitializeComponent();
-
-
-            Task.Run(() => { HandleResponses(); });
+            this.mainForm = mainForm;
             Request request = new Request() { Type = RequestType.getRooms };
             ClientPlayer.SendRequest(request);
-
-            //DisplayRooms(rooms);
-
         }
-        private async Task HandleResponses()
+
+        public void DisplayRooms(object payload)
         {
-            byte[] buffer = new byte[2024];
-            while (true)
+            getRoomsResponsePayload roomsPayload = JsonSerializer.Deserialize<getRoomsResponsePayload>(payload.ToString());
+            List<RoomInfo> rooms = roomsPayload.rooms;
+
+            flowLayoutPanelRooms.Controls.Clear();
+            foreach (var room in rooms)
             {
-
-                int bytesRead =  ClientPlayer.client.GetStream().Read(buffer, 0, buffer.Length);
-                string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                Response response = JsonSerializer.Deserialize<Response>(message);
-                if (response.Type == ResponseType.getRooms)
-                {
-                    getRoomsResponsePayload payload = JsonSerializer.Deserialize<getRoomsResponsePayload>(response.payload.ToString());
-                    roomIds = payload.roomIds;
-                    categories = payload.categories;
-
-                    DisplayRooms(roomIds, categories);
-
-                }
-
+                var roomComponent = new RoomComponent(room, this);
+                flowLayoutPanelRooms.Controls.Add(roomComponent);
             }
-        }
-        private void DisplayRooms(List<string> roomsIds, List<GameCategory> categories)
-        {
-
-            this.Invoke(() => {flowLayoutPanelRooms.Controls.Clear();});
-            for (int i = 0; i < roomsIds.Count; i++)
-            {
-                var roomComponent = new RoomComponent(roomIds[i], categories[i].ToString());
-                this.Invoke(() => { flowLayoutPanelRooms.Controls.Add(roomComponent); });
-            }
-
-
         }
 
         private void button_create_Click(object sender, EventArgs e)
@@ -72,19 +37,21 @@ namespace Client
             createRoomDialog.ShowDialog();
         }
 
-        private void flowLayoutPanelRooms_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void button_Refresh_Click(object sender, EventArgs e)
         {
-            
             Request request = new Request() { Type = RequestType.getRooms };
             ClientPlayer.SendRequest(request);
-            
-            
         }
-        
+
+        public void JoinRoom(RoomInfo room)
+        {
+            ClientPlayer.roomInfo = room;
+            mainForm.ShowGamePanel(false);
+        }
+        public void SpectateRoom(RoomInfo room)
+        {
+            ClientPlayer.roomInfo = room;
+            mainForm.ShowGamePanel(true);
+        }
     }
 }
