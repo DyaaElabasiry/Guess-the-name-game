@@ -12,7 +12,8 @@ public enum RequestType
     getRooms,
     move,
     pressedKey,
-    gameOver
+    gameOver,
+    
 }
 
 

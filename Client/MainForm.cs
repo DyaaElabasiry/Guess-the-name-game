@@ -80,6 +80,10 @@ namespace Client
             {
                gameForm.setAsSpectator();
             }
+            else
+            {
+                gameForm.joinGame();
+            }
         }
     }
 }

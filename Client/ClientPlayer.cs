@@ -13,7 +13,7 @@ namespace Client
     {
         public static TcpClient client;
         public static string PlayerName;
-        public static RoomInfo roomInfo = new RoomInfo() { word = "CAT"};
+        public static RoomInfo roomInfo = new RoomInfo() ;
         
         public static  async Task SendRequest(Request request)
         {

@@ -24,12 +24,11 @@ namespace Client
             keyboard.Dock = DockStyle.Bottom;
             this.Controls.Add(keyboard);
 
-            word = ClientPlayer.roomInfo.word;
-            displayWord = new string('_', word.Length).ToCharArray();
+            
 
             wordLabel = new Label
             {
-                Text = FormatDisplayWord(displayWord),
+                
                 Font = new Font("Segoe UI", 24),
                 AutoSize = true,
             };
@@ -55,12 +54,18 @@ namespace Client
 
             yourTurnResponsePayload payload = JsonSerializer.Deserialize<yourTurnResponsePayload>(response.payload.ToString());
             char pressedKey = payload.key;
-            if (isSpectating)
+            /*if (isSpectating)
             {
                 MessageBox.Show($"pressed key {pressedKey}");
-            }
+            }*/
             updateWord(pressedKey);
             disableKeyboardKey(pressedKey);
+        }
+        public void joinGame()
+        {
+            word = ClientPlayer.roomInfo.word;
+            displayWord = new string('_', word.Length).ToCharArray();
+            wordLabel.Text = FormatDisplayWord(displayWord);
         }
         public void spectateGame(Response response)
 
@@ -68,9 +73,9 @@ namespace Client
             spectateRoomResponsePayload payload = JsonSerializer.Deserialize<spectateRoomResponsePayload>(response.payload.ToString());
             RoomInfo roomInfo = payload.roomInfo;
             word = roomInfo.word;
-            displayWord = new string('_', word.Length).ToCharArray();
+            displayWord = roomInfo.guessedChars.ToCharArray();
             wordLabel.Text = FormatDisplayWord(displayWord);
-            MessageBox.Show("Spectating " + roomInfo.player1Name + " vs " + roomInfo.player2Name);
+            /*MessageBox.Show("Spectating " + roomInfo.player1Name + " vs " + roomInfo.player2Name);*/
 
         }
         public void HandleGameOver()
@@ -87,9 +92,10 @@ namespace Client
                 Button button = sender as Button;
                 char pressedKey = (char)e.KeyCode;
                 myTurn = false;
-                turn.Text = "Opponent's Turn";
-                sendGuess(pressedKey);
+                if (!isSpectating) { turn.Text = "Opponent's Turn"; }
+                
                 updateWord(pressedKey);
+                sendGuess(pressedKey);
                 disableKeyboardKey(pressedKey);
 
                 if (string.Join("", displayWord) == word)

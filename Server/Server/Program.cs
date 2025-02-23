@@ -165,7 +165,7 @@ class Server
                     Player otherPlayer = GetOtherPlayer(player);
                     
                     rooms[player.roomId].guessedChars = payload.guessedChars;
-                    
+                    Console.WriteLine($"guessed word {payload.guessedChars}");
                     //
                     yourTurnResponsePayload yourTurnPayload = new yourTurnResponsePayload
                     {
