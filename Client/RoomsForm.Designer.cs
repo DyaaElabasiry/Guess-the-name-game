@@ -36,9 +36,9 @@
             // button_create
             // 
             button_create.Font = new Font("Segoe UI", 12F);
-            button_create.Location = new Point(678, 398);
             button_create.Name = "button_create";
             button_create.Size = new Size(110, 40);
+            button_create.Location = new Point(this.Width-button_create.Width, this.Height-button_create.Height);
             button_create.TabIndex = 0;
             button_create.Text = "Create";
             button_create.UseVisualStyleBackColor = true;
@@ -68,11 +68,15 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button_Refresh);
+            //Controls.Add(button_Refresh);
             Controls.Add(button_create);
             Controls.Add(flowLayoutPanelRooms);
             Name = "RoomsForm";
             Text = "Rooms";
+            Load+= (sender, e) =>
+            {
+                button_create.Location = new Point(this.Width - button_create.Width, this.Height - button_create.Height);
+            };
             ResumeLayout(false);
         }
 

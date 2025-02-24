@@ -31,6 +31,7 @@ namespace Client
                 
                 Font = new Font("Segoe UI", 24),
                 AutoSize = true,
+                Anchor = AnchorStyles.None
             };
 
             wordLabel.Location = new Point((this.Width - wordLabel.Width) / 2, (this.Height - wordLabel.Height) / 2);
@@ -40,17 +41,27 @@ namespace Client
                 Font = new Font("Segoe UI", 24),
                 AutoSize = true,
                 Location = new Point(10, 10),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left
             };
 
             this.Controls.Add(wordLabel);
             this.Controls.Add(turn);
             this.mainForm = mainForm;
-        }
+            this.Resize += GameForm_Resize;
 
+        }
+        private void GameForm_Resize(object sender, EventArgs e)
+        {
+            // Center the wordLabel when the form is resized
+            wordLabel.Location = new Point((this.Width - wordLabel.Width) / 2, (this.Height - wordLabel.Height) / 2);
+        }
         public void HandleYourTurn(Response response)
         {
-            turn.Text = "Your Turn";
-            myTurn = true;
+            if (!isSpectating)
+            {
+                turn.Text = "Your Turn";
+                myTurn = true;
+            }
 
             yourTurnResponsePayload payload = JsonSerializer.Deserialize<yourTurnResponsePayload>(response.payload.ToString());
             char pressedKey = payload.key;

@@ -46,7 +46,8 @@ namespace Client
         public void JoinRoom(RoomInfo room)
         {
             ClientPlayer.roomInfo = room;
-            mainForm.ShowGamePanel(false);
+            //mainForm.ShowGamePanel(false);
+            mainForm.ShowWaitingForOtherPlayersPanel();
         }
         public void SpectateRoom(RoomInfo room)
         {

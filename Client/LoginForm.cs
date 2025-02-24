@@ -22,6 +22,7 @@ namespace Client
             ClientPlayer.SendRequest(request);
 
             mainForm.ShowRoomsPanel();
+            
         }
     }
 }

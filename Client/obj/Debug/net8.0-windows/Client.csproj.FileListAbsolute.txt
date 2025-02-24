@@ -25,3 +25,4 @@ F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.RoomsForm
 F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.GameForm.resources
 F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.OnScreenKeyboard.resources
 F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.MainForm.resources
+F:\Projects\.NET\guess the name\Client\obj\Debug\net8.0-windows\Client.WaitingForOtherPlayers.resources

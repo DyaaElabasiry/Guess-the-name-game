@@ -6,6 +6,7 @@
         private Panel panelLogin;
         private Panel panelRooms;
         private Panel panelGame;
+        private Panel panelWaiting;
 
         protected override void Dispose(bool disposing)
         {
@@ -21,6 +22,7 @@
             this.panelLogin = new Panel();
             this.panelRooms = new Panel();
             this.panelGame = new Panel();
+            this.panelWaiting = new Panel();
             this.SuspendLayout();
             // 
             // panelLogin
@@ -47,12 +49,21 @@
             this.panelGame.Size = new Size(800, 450);
             this.panelGame.TabIndex = 2;
             // 
+            // panelWaiting
+            // 
+            this.panelWaiting.Dock = DockStyle.Fill;
+            this.panelWaiting.Location = new Point(0, 0);
+            this.panelWaiting.Name = "panelWaiting";
+            this.panelWaiting.Size = new Size(800, 450);
+            this.panelWaiting.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.ClientSize = new Size(800, 450);
             this.Controls.Add(this.panelLogin);
             this.Controls.Add(this.panelRooms);
             this.Controls.Add(this.panelGame);
+            this.Controls.Add(this.panelWaiting);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.ResumeLayout(false);

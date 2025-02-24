@@ -22,10 +22,14 @@ namespace Client
             if(roomInfo.numberOfPlayers == 2)
             {
                 buttonJoin.Enabled = false;
+                
+            }
+            if(roomInfo.isReady)
+            {
                 buttonSpectate.Enabled = true;
             }
 
-            
+
             labelRoomName.Text = roomInfo.roomId;
             label_RoomCategory.Text = roomInfo.category.ToString();
             label_NumberOfPlayers.Text = $"players : {roomInfo.numberOfPlayers.ToString()}";

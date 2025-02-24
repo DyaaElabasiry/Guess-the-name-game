@@ -11,6 +11,7 @@ class Server
 {
     static TcpListener listener;
     static Dictionary<string, Room> rooms = new Dictionary<string, Room>();
+    static List<TcpClient> clients = new List<TcpClient>();
 
     public static async Task Start()
     {
@@ -21,6 +22,7 @@ class Server
         while (true)
         {
             TcpClient client = await listener.AcceptTcpClientAsync();
+            clients.Add(client);
             Console.WriteLine("New client connected.");
             Task.Run(() => { HandleClient(client); });
         }
@@ -79,6 +81,7 @@ class Server
                     rooms[player.roomId].category = payload.category;
                     rooms[player.roomId].word = GetRandomWord(payload.category);
                     rooms[player.roomId].guessedChars = new string('_', rooms[player.roomId].word.Length);
+                    BroadcastRoomsToAllUsers();
                     //rooms[player.roomId].players.Add(player);
                 }
                 else if (request.Type == RequestType.join)
@@ -97,6 +100,17 @@ class Server
                         rooms[roomId].player2 = player;
                     }
 
+                    if (GetOtherPlayer(player) != null)
+                    {
+                        Response response = new Response
+                        {
+                            Type = ResponseType.startGame
+                        };
+                        SendResponse(player, response);
+                        SendResponse(GetOtherPlayer(player), response);
+                        rooms[roomId].isReady = true;
+                    }
+                    BroadcastRoomsToAllUsers();
                     
                 }
                 else if (request.Type == RequestType.getRooms)
@@ -119,13 +133,13 @@ class Server
                             roomId = room.Value.roomId,
                             category = room.Value.category,
                             word = room.Value.word,
+                            isReady = room.Value.isReady,
                             numberOfPlayers = count
                         };
                         roomsInfo.Add(roomInfo);
-                        
-                        
                     }
-
+                    
+                    
                     getRoomsResponsePayload payload = new getRoomsResponsePayload
                         { rooms = roomsInfo};
                     Response response = new Response
@@ -219,20 +233,21 @@ class Server
 
             Console.WriteLine("Client disconnected.");
         }
+        catch (SocketException ex)
+        {
+            Console.WriteLine($"SocketException: {ex.Message}");
+        }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.Message);
-            Console.WriteLine(ex.Source);
-            Console.WriteLine(ex.StackTrace);
+            Console.WriteLine($"Exception: {ex.Message}");
         }
         finally
         {
-            /*client.Close();
-            if (roomName != null)
-            {
-                rooms[int.Parse(roomName)].Remove(client);
-            }*/
+            Console.WriteLine("Client disconnected.");
+            clients.Remove(client);
+            client.Close();
         }
+        
     }
 
     static async Task SendResponse(Player player, Response response)
@@ -287,6 +302,45 @@ class Server
             SendResponse(spectator, response);
         }
     }
+    static async Task BroadcastRoomsToAllUsers()
+    {
+        List<RoomInfo> roomsInfo = new List<RoomInfo>();
+        foreach (var room in rooms)
+        {
+            int count = 0;
+            if (room.Value.player1 != null)
+            {
+                count++;
+            }
+            if (room.Value.player2 != null)
+            {
+                count++;
+            }
+            RoomInfo roomInfo = new RoomInfo
+            {
+                roomId = room.Value.roomId,
+                category = room.Value.category,
+                word = room.Value.word,
+                isReady = room.Value.isReady,
+                numberOfPlayers = count
+            };
+            roomsInfo.Add(roomInfo);
+        }
+
+        getRoomsResponsePayload payload = new getRoomsResponsePayload { rooms = roomsInfo };
+        Response response = new Response
+        {
+            Type = ResponseType.getRooms,
+            payload = JsonSerializer.SerializeToElement(payload)
+        };
+
+        foreach (var client in clients)
+        {
+            await SendResponse(new Player(){client = client}, response);
+        }
+    }
+
+    
 }
 
 class Program

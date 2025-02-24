@@ -14,6 +14,7 @@ namespace Client
         private LoginForm loginForm;
         private RoomsForm roomsForm;
         private GameForm gameForm;
+        private WaitingForOtherPlayers waitingForOtherPlayers;
 
         public MainForm()
         {
@@ -24,10 +25,14 @@ namespace Client
             loginForm = new LoginForm(this);
             roomsForm = new RoomsForm(this);
             gameForm = new GameForm(this);
+            waitingForOtherPlayers = new WaitingForOtherPlayers();
+
+            waitingForOtherPlayers.Dock = DockStyle.Fill;
 
             panelLogin.Controls.Add(loginForm);
             panelRooms.Controls.Add(roomsForm);
             panelGame.Controls.Add(gameForm);
+            panelWaiting.Controls.Add(waitingForOtherPlayers);
 
             ShowLoginPanel();
 
@@ -60,6 +65,10 @@ namespace Client
 
                     gameForm.Invoke(new Action(() => gameForm.spectateGame(response)));
                 }
+                else if(response.Type == ResponseType.startGame)
+                {
+                    ShowGamePanel(false);
+                }
             }
         }
 
@@ -84,6 +93,10 @@ namespace Client
             {
                 gameForm.joinGame();
             }
+        }
+        public void ShowWaitingForOtherPlayersPanel()
+        {
+            panelWaiting.BringToFront();
         }
     }
 }

@@ -3,7 +3,7 @@
 
 public enum ResponseType
 {
-    list,login,getUserName,getRooms,spectateRoom,yourTurn,gameOver
+    list,login,getUserName,getRooms,spectateRoom,yourTurn,gameOver,startGame
 }
 
 public class Response
