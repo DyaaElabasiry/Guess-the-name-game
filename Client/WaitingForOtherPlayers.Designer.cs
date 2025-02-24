@@ -35,19 +35,19 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 15F);
-            label1.Location = new Point(202, 149);
+            label1.Location = new Point(245, 206);
             label1.Name = "label1";
-            label1.Size = new Size(229, 28);
+            label1.Size = new Size(290, 35);
             label1.TabIndex = 0;
             label1.Text = "Waiting for other players";
             // 
             // WaitingForOtherPlayers
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(label1);
             Name = "WaitingForOtherPlayers";
-            Size = new Size(635, 357);
+            Size = new Size(800, 450);
             ResumeLayout(false);
             PerformLayout();
         }

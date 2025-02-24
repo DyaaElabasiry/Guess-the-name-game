@@ -19,10 +19,10 @@
             // 
             // OnScreenKeyboard
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            //AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Name = "OnScreenKeyboard";
-            Size = new Size(700, 142);
+            Size = new Size(800, 142);
             ResumeLayout(false);
         }
     }
